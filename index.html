@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADE RECLAMATION</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <!-- إضافة مكتبة الخريطة -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>ADE RECLAMATION</h1>
+
+        <!-- قسم الشكاوي السابقة -->
+        <div class="previous-complaints">
+            <h2>الشكاوي السابقة</h2>
+            <ul>
+                <li>
+                    <span>شكوى #1 - مشكلة في الخدمة</span>
+                    <i class="fas fa-check-circle completed"></i> <!-- تمت -->
+                </li>
+                <li>
+                    <span>شكوى #2 - مشكلة في الفاتورة</span>
+                    <i class="fas fa-times-circle not-completed"></i> <!-- لم تتم -->
+                </li>
+            </ul>
+        </div>
+
+        <div class="form-container">
+            <!-- الجهة اليسرى (الفرنسية) -->
+            <div class="form-left">
+                <div class="form-group">
+                    <label for="nom"><i class="fas fa-user"></i> Nom:</label>
+                    <input type="text" id="nom" placeholder="أدخل اللقب">
+                </div>
+                <div class="form-group">
+                    <label for="prenom"><i class="fas fa-user"></i> Prénom:</label>
+                    <input type="text" id="prenom" placeholder="أدخل الاسم">
+                </div>
+                <div class="form-group">
+                    <label for="mobile"><i class="fas fa-mobile-alt"></i> Mobile:</label>
+                    <input type="text" id="mobile" placeholder="أدخل الجوال">
+                </div>
+                <div class="form-group">
+                    <label for="adresse"><i class="fas fa-map-marker-alt"></i> Adresse:</label>
+                    <input type="text" id="adresse" placeholder="أدخل العنوان">
+                </div>
+            </div>
+
+            <!-- الجهة اليمنى (العربية) -->
+            <div class="form-right">
+                <div class="form-group">
+                    <label for="unite"><i class="fas fa-building"></i> Unité:</label>
+                    <input type="text" id="unite" placeholder="أدخل الوحدة">
+                </div>
+                <div class="form-group">
+                    <label for="code"><i class="fas fa-id-card"></i> Code Abonné:</label>
+                    <input type="text" id="code" placeholder="أدخل الرمز المشترك">
+                </div>
+                <div class="form-group">
+                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
+                    <input type="email" id="email" placeholder="أدخل البريد الإلكتروني">
+                </div>
+                <div class="form-group">
+                    <label for="reclamation"><i class="fas fa-exclamation-circle"></i> Réclamation:</label>
+                    <textarea id="reclamation" placeholder="أدخل المطالبة"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- قسم الخريطة -->
+        <div class="map-container">
+            <h2>حدد موقعك على الخريطة / Sélectionnez votre emplacement sur la carte</h2>
+            <div id="map"></div>
+        </div>
+
+        <!-- زر التقاط الصور -->
+        <div class="photo-upload">
+            <input type="file" id="photo" accept="image/*" style="display: none;">
+            <button id="prendrePhotos"><i class="fas fa-camera"></i> Prendre Photos</button>
+        </div>
+
+        <!-- زر إرسال المطالبة -->
+        <button id="envoyerReclamation"><i class="fas fa-paper-plane"></i> Envoyer Réclamation</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

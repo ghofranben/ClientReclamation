@@ -3,20 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADE RECLAMATION</title>
+    <title>ADE Ain Defla - تقديم شكوى</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
     <!-- إضافة مكتبة الخريطة -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- إضافة SweetAlert2 للإشعارات -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     <div class="container">
-        <h1>ADE RECLAMATION</h1>
+        <!-- شعار ADE Ain Defla -->
+        <div class="logo">
+            <img src="/img/189625437_4700084990054267_7859006416814440107_n.jpg" alt="ADE Ain Defla Logo">
+        </div>
+
+        <h1>Submit a complaint</h1>
 
         <!-- قسم الشكاوي السابقة -->
         <div class="previous-complaints">
-            <h2>الشكاوي السابقة</h2>
+            <h2>Previous complaints:</h2>
             <ul>
                 <li>
                     <span>شكوى #1 - مشكلة في الخدمة</span>
@@ -33,58 +40,68 @@
             <!-- الجهة اليسرى (الفرنسية) -->
             <div class="form-left">
                 <div class="form-group">
-                    <label for="nom"><i class="fas fa-user"></i> Nom:</label>
+                    <label for="nom"><i class="fas fa-user"></i> Last Name :</label>
                     <input type="text" id="nom" placeholder="أدخل اللقب">
+                    <span class="error-message" id="nom-error"></span> <!-- رسالة الخطأ -->
                 </div>
                 <div class="form-group">
-                    <label for="prenom"><i class="fas fa-user"></i> Prénom:</label>
+                    <label for="prenom"><i class="fas fa-user"></i>First Name:</label>
                     <input type="text" id="prenom" placeholder="أدخل الاسم">
+                    <span class="error-message" id="prenom-error"></span> <!-- رسالة الخطأ -->
                 </div>
                 <div class="form-group">
                     <label for="mobile"><i class="fas fa-mobile-alt"></i> Mobile:</label>
                     <input type="text" id="mobile" placeholder="أدخل الجوال">
+                    <span class="error-message" id="mobile-error"></span> <!-- رسالة الخطأ -->
+                    
                 </div>
                 <div class="form-group">
                     <label for="adresse"><i class="fas fa-map-marker-alt"></i> Adresse:</label>
                     <input type="text" id="adresse" placeholder="أدخل العنوان">
+                    <span class="error-message" id="adresse-error"></span> <!-- رسالة الخطأ -->
                 </div>
             </div>
 
             <!-- الجهة اليمنى (العربية) -->
             <div class="form-right">
                 <div class="form-group">
-                    <label for="unite"><i class="fas fa-building"></i> Unité:</label>
+                    <label for="unite"><i class="fas fa-building"></i> Unit:</label>
                     <input type="text" id="unite" placeholder="أدخل الوحدة">
+                    <span class="error-message" id="unite-error"></span> <!-- رسالة الخطأ -->
                 </div>
                 <div class="form-group">
-                    <label for="code"><i class="fas fa-id-card"></i> Code Abonné:</label>
+                    <label for="code"><i class="fas fa-id-card"></i> Subscriber Code:</label>
                     <input type="text" id="code" placeholder="أدخل الرمز المشترك">
+                    <span class="error-message" id="code-error"></span> <!-- رسالة الخطأ -->
                 </div>
                 <div class="form-group">
                     <label for="email"><i class="fas fa-envelope"></i> Email:</label>
                     <input type="email" id="email" placeholder="أدخل البريد الإلكتروني">
+                    <span class="error-message" id="email-error"></span> <!-- رسالة الخطأ -->  
                 </div>
                 <div class="form-group">
-                    <label for="reclamation"><i class="fas fa-exclamation-circle"></i> Réclamation:</label>
-                    <textarea id="reclamation" placeholder="أدخل المطالبة"></textarea>
+                    <label for="reclamation"><i class="fas fa-exclamation-circle"></i> Complaint:</label>
+                    <textarea id="reclamation" placeholder="ادخل وصف الشكوى"></textarea>
+                    <span class="error-message" id="reclamation-error"></span> <!-- رسالة الخطأ -->
                 </div>
             </div>
         </div>
 
         <!-- قسم الخريطة -->
         <div class="map-container">
-            <h2>حدد موقعك على الخريطة / Sélectionnez votre emplacement sur la carte</h2>
+            <h2>حدد موقعك على الخريطة / Select your location on the map</h2>
             <div id="map"></div>
+            <p class="map-notice">⚠️ يمكنك تحديد موقعك داخل حدود ولاية عين دفلى فقط.</p>
         </div>
 
         <!-- زر التقاط الصور -->
         <div class="photo-upload">
             <input type="file" id="photo" accept="image/*" style="display: none;">
-            <button id="prendrePhotos"><i class="fas fa-camera"></i> Prendre Photos</button>
+            <button id="prendrePhotos"><i class="fas fa-camera"></i> Take Photos</button>
         </div>
 
         <!-- زر إرسال المطالبة -->
-        <button id="envoyerReclamation"><i class="fas fa-paper-plane"></i> Envoyer Réclamation</button>
+        <button id="envoyerReclamation"><i class="fas fa-paper-plane"></i> Send Complaint</button>
     </div>
 
     <script src="script.js"></script>

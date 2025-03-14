@@ -1,6 +1,6 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    background-color: #e9f5f9; /* لون خلفية فاتح */
     margin: 0;
     padding: 0;
     display: flex;
@@ -12,31 +12,44 @@ body {
 
 .container {
     background-color: #fff;
-    padding: 40px; /* زيادة البادين */
+    padding: 40px;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     width: 900px;
     text-align: center;
     margin: 20px;
+    position: relative; /* لجعل الشعار في الزاوية اليمنى العليا */
+}
+
+.logo {
+    position: absolute; /* وضع الشعار في الزاوية اليمنى العليا */
+    top: 20px;
+    right: 20px;
+}
+
+.logo img {
+    max-width: 100px; /* تصغير حجم الشعار */
+    height: auto;
 }
 
 h1 {
     color: #007BFF; /* لون أزرق */
-    margin-bottom: 30px; /* زيادة المسافة */
-    font-size: 32px; /* حجم أكبر */
+    margin-bottom: 30px;
+    font-size: 32px;
     font-weight: bold;
-    padding-bottom: 10px;
-    border-bottom: 2px solid #007BFF; /* خط تحت العنوان */
+    padding-bottom: 20px;
+    border-bottom: 2px solid #007BFF;
 }
 
 .previous-complaints {
     margin-bottom: 30px;
-    text-align: right;
+    text-align: left;
 }
 
 .previous-complaints h2 {
     color: #333;
     font-size: 24px;
+    margin-top: 55px;
     margin-bottom: 15px;
 }
 
@@ -51,6 +64,13 @@ h1 {
     align-items: center;
     padding: 10px;
     border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease; /* إضافة تأثيرات */
+}
+
+.previous-complaints li:hover {
+    background-color: #f8f9fa; /* تغيير لون الخلفية */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* إضافة ظل */
+    border-radius: 8px; /* تقويس الزوايا */
 }
 
 .previous-complaints li span {
@@ -113,6 +133,36 @@ textarea {
     resize: vertical;
     height: 100px;
 }
+.error-message {
+    color: #dc3545; /* لون أحمر */
+    font-size: 14px;
+    margin-top: 5px;
+    display: none; /* مخفي بشكل افتراضي */
+}
+
+/* تأثيرات الهوفر على الحقول */
+input[type="text"]:hover, input[type="email"]:hover, textarea:hover {
+    border-color: #007BFF; /* لون أزرق عند التحويم */
+}
+
+/* تنسيق الحقل عند إدخال رقم صحيح */
+input.valid {
+    border-color: #28a745; /* لون أخضر */
+}
+
+/* تنسيق الحقل عند إدخال رقم غير صحيح */
+input.invalid {
+    border-color: #dc3545; /* لون أحمر */
+}
+/* تنسيق الحقل عند إدخال بيانات صحيحة */
+input.valid, textarea.valid {
+    border-color: #28a745; /* لون أخضر */
+}
+
+/* تنسيق الحقل عند إدخال بيانات غير صحيحة */
+input.invalid, textarea.invalid {
+    border-color: #dc3545; /* لون أحمر */
+}
 
 button {
     padding: 12px 24px;
@@ -136,7 +186,6 @@ button:active {
 
 i {
     margin-right: 8px;
-    color: #28a745;
 }
 
 .photo-upload {
@@ -152,4 +201,11 @@ i {
     width: 100%;
     border-radius: 8px;
     border: 1px solid #ccc;
+}
+
+.map-notice {
+    color: #dc3545; /* لون أحمر للتنبيه */
+    font-size: 14px;
+    margin-top: 10px;
+    font-weight: bold;
 }

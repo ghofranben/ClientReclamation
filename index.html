@@ -1,109 +1,249 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ADE Ain Defla - تقديم شكوى</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <!-- إضافة مكتبة الخريطة -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <!-- إضافة SweetAlert2 للإشعارات -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>ADE Ain Defla - Water Services</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="./public/styles/main.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    <div class="container">
-        <!-- شعار ADE Ain Defla -->
-        <div class="logo">
-            <img src="/img/189625437_4700084990054267_7859006416814440107_n.jpg" alt="ADE Ain Defla Logo">
-        </div>
+    <div class="page-background">
+        <div class="container">
+            <div class="complaint-form">
+                <!-- Logo container -->
+                <div class="logo-container text-start">
+                    <img src="/public/images/img1.jpg" alt="الجزائرية للمياه - Algerian Waters" class="company-logo" style="width: 120px;">
+                </div>
 
-        <h1>Submit a complaint</h1>
+                <h2 class="form-title">الجزائرية للمياه - عين دفلى<br>ADE - Ain Defla</h2>
+                
+                <form id="complaintForm" novalidate>
+                <!-- Previous Complaints Section (Hidden for new users) -->
+                <div id="previousComplaints" class="form-section previous-complaints d-none">
+                    <h4 class="mb-3">
+                        <i class="fas fa-history"></i>
+                        الشكاوى السابقة / Previous Complaints
+                    </h4>
+                    <div class="complaints-list">
+                        <!-- Example complaints will be replaced by dynamic content -->
+                        <div class="complaint-item">
+                            <div class="complaint-header">
+                                <span class="complaint-date">2025-03-21</span>
+                                <span class="complaint-status resolved">
+                                    <i class="fas fa-check-circle"></i>
+                                    تم الحل / Resolved
+                                </span>
+                            </div>
+                            <div class="complaint-content">
+                                <p class="complaint-text">مشكلة في أنابيب المياه في شارع الأمير عبد القادر</p>
+                                <div class="complaint-details">
+                                    <span><i class="fas fa-map-marker-alt"></i> عين الدفلى (36.2650, 1.9680)</span>
+                                    <span><i class="fas fa-tag"></i> شكوى تقنية</span>
+                                </div>
+                            </div>
+                        </div>
 
-        <!-- قسم الشكاوي السابقة -->
-        <div class="previous-complaints">
-            <h2>Previous complaints:</h2>
-            <ul>
-                <li>
-                    <span>شكوى #1 - مشكلة في الخدمة</span>
-                    <i class="fas fa-check-circle completed"></i> <!-- تمت -->
-                </li>
-                <li>
-                    <span>شكوى #2 - مشكلة في الفاتورة</span>
-                    <i class="fas fa-times-circle not-completed"></i> <!-- لم تتم -->
-                </li>
-            </ul>
-        </div>
+                        <div class="complaint-item">
+                            <div class="complaint-header">
+                                <span class="complaint-date">2025-03-20</span>
+                                <span class="complaint-status in-progress">
+                                    <i class="fas fa-clock"></i>
+                                    قيد المعالجة / In Progress
+                                </span>
+                            </div>
+                            <div class="complaint-content">
+                                <p class="complaint-text">انقطاع المياه في حي النصر</p>
+                                <div class="complaint-details">
+                                    <span><i class="fas fa-map-marker-alt"></i> عين الدفلى (36.2700, 1.9720)</span>
+                                    <span><i class="fas fa-tag"></i> شكوى تقنية</span>
+                                </div>
+                            </div>
+                        </div>
 
-        <div class="form-container">
-            <!-- الجهة اليسرى (الفرنسية) -->
-            <div class="form-left">
-                <div class="form-group">
-                    <label for="nom"><i class="fas fa-user"></i> Last Name :</label>
-                    <input type="text" id="nom" placeholder="أدخل اللقب">
-                    <span class="error-message" id="nom-error"></span> <!-- رسالة الخطأ -->
+                        <div class="complaint-item">
+                            <div class="complaint-header">
+                                <span class="complaint-date">2025-03-19</span>
+                                <span class="complaint-status pending">
+                                    <i class="fas fa-exclamation-circle"></i>
+                                    في الانتظار / Pending
+                                </span>
+                            </div>
+                            <div class="complaint-content">
+                                <p class="complaint-text">مشكلة في الفواتير الشهرية</p>
+                                <div class="complaint-details">
+                                    <span><i class="fas fa-map-marker-alt"></i> عين الدفلى (36.2680, 1.9700)</span>
+                                    <span><i class="fas fa-tag"></i> شكوى تجارية</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="prenom"><i class="fas fa-user"></i>First Name:</label>
-                    <input type="text" id="prenom" placeholder="أدخل الاسم">
-                    <span class="error-message" id="prenom-error"></span> <!-- رسالة الخطأ -->
+
+                <div class="form-section">
+                    <div class="radio-group mb-4">
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="complaintType" id="technical" checked>
+                            <label class="form-check-label" for="technical">
+                                شكوى تقنية / Technical Issue
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="complaintType" id="commercial">
+                            <label class="form-check-label" for="commercial">
+                                شكوى تجارية / Commercial Issue
+                            </label>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="mobile"><i class="fas fa-mobile-alt"></i> Mobile:</label>
-                    <input type="text" id="mobile" placeholder="أدخل الجوال">
-                    <span class="error-message" id="mobile-error"></span> <!-- رسالة الخطأ -->
-                    
+
+                <div class="form-section">
+                    <h4 class="mb-3">معلومات شخصية / Personal Information</h4>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="nom" class="form-label">
+                                <i class="fas fa-user"></i> الاسم / Name:
+                            </label>
+                            <input type="text" class="form-control" id="nom" 
+                                   pattern="^[\u0600-\u06FF\s]{2,50}$"
+                                   placeholder="أدخل الاسم باللغة العربية" required>
+                            <div class="invalid-feedback">
+                                Please enter your name in Arabic (2-50 characters)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="municipality" class="form-label">
+                                <i class="fas fa-city"></i> البلدية / Municipality:
+                            </label>
+                            <select class="form-select" id="municipality" required>
+                                <option value="">اختر البلدية / Select Municipality</option>
+                                <option value="ain_defla">عين الدفلى</option>
+                                <option value="khemis">خميس مليانة</option>
+                                <option value="boumedfaa">بومدفع</option>
+                                <option value="el_attaf">العطاف</option>
+                                <option value="el_abadia">العبادية</option>
+                                <option value="djendel">جندل</option>
+                                <option value="ain_sultan">عين السلطان</option>
+                                <option value="oued_chorfa">واد شرفة</option>
+                                <option value="ain_bouyahia">عين بويحيى</option>
+                                <option value="ain_torki">عين التركي</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select your municipality
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="prenom" class="form-label">
+                                <i class="fas fa-user"></i> اللقب / Surname:
+                            </label>
+                            <input type="text" class="form-control" id="prenom" 
+                                   pattern="^[\u0600-\u06FF\s]{2,50}$"
+                                   placeholder="أدخل اللقب باللغة العربية" required>
+                            <div class="invalid-feedback">
+                                Please enter your surname in Arabic (2-50 characters)
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="codeAbonne" class="form-label">
+                                <i class="fas fa-id-card"></i> رقم المشترك / Subscriber ID:
+                            </label>
+                            <input type="text" class="form-control" id="codeAbonne" 
+                                   pattern="^[0-9]{5,10}$"
+                                   placeholder="أدخل رقم المشترك" required>
+                            <div class="invalid-feedback">
+                                Please enter your subscriber ID (5-10 digits)
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label for="mobile" class="form-label">
+                                <i class="fas fa-mobile-alt"></i> رقم الهاتف / Phone:
+                            </label>
+                            <input type="tel" class="form-control" id="mobile" 
+                                   pattern="^0[567][0-9]{8}$"
+                                   placeholder="أدخل رقم الهاتف" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid Algerian phone number
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="email" class="form-label">
+                                <i class="fas fa-envelope"></i> البريد الإلكتروني / Email:
+                            </label>
+                            <input type="email" class="form-control" id="email" 
+                                   pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                                   placeholder="أدخل البريد الإلكتروني" required>
+                            <div class="invalid-feedback">
+                                Please enter a valid email address
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="adresse"><i class="fas fa-map-marker-alt"></i> Adresse:</label>
-                    <input type="text" id="adresse" placeholder="أدخل العنوان">
-                    <span class="error-message" id="adresse-error"></span> <!-- رسالة الخطأ -->
+
+                <div class="form-section">
+                    <h4 class="mb-3">تفاصيل الشكوى / Complaint Details</h4>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">
+                            <i class="fas fa-map-marker-alt"></i> العنوان / Address:
+                        </label>
+                        <input type="text" class="form-control" id="address" 
+                               placeholder="حدد موقعك على الخريطة" readonly required>
+                        <div class="invalid-feedback">
+                            Please select your location on the map
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="reclamation" class="form-label">
+                            <i class="fas fa-comment"></i> الشكوى / Complaint:
+                        </label>
+                        <textarea class="form-control" id="reclamation" 
+                                minlength="10" maxlength="500"
+                                placeholder="اكتب تفاصيل الشكوى هنا" required></textarea>
+                        <div class="invalid-feedback">
+                            Please write your complaint (10-500 characters)
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label">حدد موقعك على الخريطة / Select Location</label>
+                        <div id="map"></div>
+                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="longitude" name="longitude">
+                    </div>
                 </div>
+
+                <div class="form-section">
+                    <h4 class="mb-3">الصور المرفقة / Attached Photos</h4>
+                    <div class="mb-3">
+                        <label class="form-label d-block">
+                            <i class="fas fa-camera"></i> إضافة صور / Add Photos
+                        </label>
+                        <button type="button" class="btn btn-primary" id="photoButton">
+                            <i class="fas fa-camera"></i> إضافة صور / Add Photos
+                        </button>
+                        <input type="file" id="photoInput" accept="image/*" multiple style="display: none">
+                        <div id="photoPreview" class="mt-2"></div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">
+                    <i class="fas fa-paper-plane"></i> إرسال الشكوى / Submit Complaint
+                </button>
+                </form>
             </div>
-
-            <!-- الجهة اليمنى (العربية) -->
-            <div class="form-right">
-                <div class="form-group">
-                    <label for="unite"><i class="fas fa-building"></i> Unit:</label>
-                    <input type="text" id="unite" placeholder="أدخل الوحدة">
-                    <span class="error-message" id="unite-error"></span> <!-- رسالة الخطأ -->
-                </div>
-                <div class="form-group">
-                    <label for="code"><i class="fas fa-id-card"></i> Subscriber Code:</label>
-                    <input type="text" id="code" placeholder="أدخل الرمز المشترك">
-                    <span class="error-message" id="code-error"></span> <!-- رسالة الخطأ -->
-                </div>
-                <div class="form-group">
-                    <label for="email"><i class="fas fa-envelope"></i> Email:</label>
-                    <input type="email" id="email" placeholder="أدخل البريد الإلكتروني">
-                    <span class="error-message" id="email-error"></span> <!-- رسالة الخطأ -->  
-                </div>
-                <div class="form-group">
-                    <label for="reclamation"><i class="fas fa-exclamation-circle"></i> Complaint:</label>
-                    <textarea id="reclamation" placeholder="ادخل وصف الشكوى"></textarea>
-                    <span class="error-message" id="reclamation-error"></span> <!-- رسالة الخطأ -->
-                </div>
-            </div>
         </div>
-
-        <!-- قسم الخريطة -->
-        <div class="map-container">
-            <h2>حدد موقعك على الخريطة / Select your location on the map</h2>
-            <div id="map"></div>
-            <p class="map-notice">⚠️ يمكنك تحديد موقعك داخل حدود ولاية عين دفلى فقط.</p>
-        </div>
-
-        <!-- زر التقاط الصور -->
-        <div class="photo-upload">
-            <input type="file" id="photo" accept="image/*" style="display: none;">
-            <button id="prendrePhotos"><i class="fas fa-camera"></i> Take Photos</button>
-        </div>
-
-        <!-- زر إرسال المطالبة -->
-        <button id="envoyerReclamation"><i class="fas fa-paper-plane"></i> Send Complaint</button>
     </div>
 
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="./public/js/main.js"></script>
 </body>
 </html>
